@@ -6,7 +6,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import "./App.css";
-import ProductList from "./components/products/list";
+import ProductList from "./components/views/products/ProductList";
 
 function App() {
   return (
