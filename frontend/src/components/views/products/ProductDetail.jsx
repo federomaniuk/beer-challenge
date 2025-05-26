@@ -3,11 +3,15 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useProduct, useStockPrice } from "../../../hooks/useApi";
 import "./ProductDetail.scss";
 import DetailsLayout from "../../layouts/DetailsLayout/DetailsLayout";
-import ProductDetailsHeader from "../../product/ProductDetails/ProductDetailsHeader";
-import ProductDetailsBody from "../../product/ProductDetails/ProductDetailsBody";
-import ProductDetailsFooter from "../../product/ProductDetails/ProductDetailsFooter";
+
+import {
+  ProductDetailsHeader,
+  ProductDetailsBody,
+  ProductDetailsFooter,
+} from "../../product";
+
 import { useFormat } from "../../../hooks/useFormat";
-import DetailsSkeleton from "../../skeletons/DetailsSkeleton.jsx/DetailsSkeleton";
+import { DetailsSkeleton } from "../../skeletons";
 
 const ProductDetail = () => {
   const { productSlug } = useParams();

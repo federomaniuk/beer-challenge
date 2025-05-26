@@ -1,7 +1,7 @@
 import { useProducts } from "../../../hooks/useApi";
 import MainLayout from "../../layouts/MainLayout/MainLayout";
-import ProductCard from "../../product/ProductCard/ProductCard";
-import ProductListSkeleton from "../../skeletons/ProductListSkeleton.jsx/ProductListSkeleton";
+import { ProductCard } from "../../product";
+import { ProductListSkeleton } from "../../skeletons";
 import UserInfo from "../../ui/UserInfo/UserInfo";
 import "./ProductList.scss";
 
