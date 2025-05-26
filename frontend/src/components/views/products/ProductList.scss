@@ -1,5 +1,7 @@
 .product-list {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 13px;
+  padding-left: 24px;
+  padding-right: 24px;
 }

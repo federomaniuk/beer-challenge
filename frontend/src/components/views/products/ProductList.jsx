@@ -1,5 +1,5 @@
-import MainLayout from "../../layouts/MainLayout";
 import { useProducts } from "../../../hooks/useApi";
+import MainLayout from "../../layouts/MainLayout/MainLayout";
 import ProductCard from "../../product/ProductCard/ProductCard";
 import "./ProductList.scss";
 
