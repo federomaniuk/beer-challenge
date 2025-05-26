@@ -22,6 +22,7 @@ app.get("/api/products", (req, res) => {
     });
 
     return {
+      id: product.id,
       brand: product.brand,
       image: product.image,
       prices: prices,
@@ -31,7 +32,44 @@ app.get("/api/products", (req, res) => {
   res.json(productsWithPrices);
 });
 
-app.get("/api/stock-price/:sku", (req, res) => {});
+app.get("/api/stock-price/:sku", (req, res) => {
+  const { sku } = req.params;
+  const stockData = stockPrice[sku];
+
+  if (!stockData) {
+    return res.status(404).json({ error: "SKU not found" });
+  }
+
+  res.json({
+    sku: sku,
+    price: stockData.price,
+    stock: stockData.stock,
+  });
+});
+
+app.get("/api/products/:id", (req, res) => {
+  const productId = parseInt(req.params.id);
+  const product = products.find((p) => p.id === productId);
+
+  if (!product) {
+    return res.status(404).json({ error: "Product not found" });
+  }
+
+  const productWithPrices = {
+    ...product,
+    prices: product.skus.map((sku) => {
+      const stockData = stockPrice[sku.code];
+      return {
+        sku: sku.code,
+        name: sku.name,
+        price: stockData ? stockData.price : null,
+        stock: stockData ? stockData.stock : null,
+      };
+    }),
+  };
+
+  res.json(productWithPrices);
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);

@@ -65,3 +65,32 @@ export const useProducts = () => {
     error,
   };
 };
+
+export const useProduct = (productId) => {
+  const [product, setProduct] = useState(null);
+  const { loading, error, fetchData } = useApi();
+
+  const getProduct = async (id) => {
+    try {
+      const data = await fetchData(`/products/${id}`);
+      setProduct(data);
+      return data;
+    } catch (err) {
+      console.error("Error fetching product:", err);
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    if (productId) {
+      getProduct(productId);
+    }
+  }, [productId]);
+
+  return {
+    product,
+    loading,
+    error,
+    refetch: () => getProduct(productId),
+  };
+};
