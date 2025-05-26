@@ -1,3 +1,5 @@
+@import "../../../assets/skeleton-animation.scss";
+
 .product-list-skeleton {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -25,26 +27,5 @@
     border-top-right-radius: 12px;
     border-bottom-right-radius: 12px;
     border-bottom-left-radius: 12px;
-  }
-}
-
-@keyframes breathe {
-  0%,
-  100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.02);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
   }
 }

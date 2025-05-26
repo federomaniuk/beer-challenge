@@ -1,3 +1,5 @@
+@import "../../../assets/skeleton-animation.scss";
+
 .details-skeleton {
   display: flex;
   flex-direction: column;
@@ -35,26 +37,5 @@
     border-radius: 12px;
     animation: breathe 2s ease-in-out infinite,
       shimmer 1.5s ease-in-out infinite;
-  }
-}
-
-@keyframes breathe {
-  0%,
-  100% {
-    opacity: 0.6;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.02);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
   }
 }
