@@ -126,4 +126,26 @@ p {
 
 .product-detail__description {
   text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  &-container {
+    gap: 8px;
+  }
+
+  &-text {
+    line-height: 24px;
+    color: #969696;
+  }
+}
+
+.product-detail__read-more {
+  color: $primary;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }

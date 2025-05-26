@@ -11,10 +11,10 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 13px;
+  width: 100%;
 }
 
 h2 {
-  // font-family: DM Sans;
   font-weight: 700;
   font-size: 18px;
   line-height: 100%;
