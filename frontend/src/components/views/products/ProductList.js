@@ -1,6 +1,7 @@
 import MainLayout from "../../layouts/MainLayout";
 import { useProducts } from "../../../hooks/useApi";
 import ProductCard from "../../product/ProductCard/ProductCard";
+import "./ProductList.scss";
 
 const ProductList = () => {
   const { products, loading, error, refetch } = useProducts();
@@ -28,9 +29,11 @@ const ProductList = () => {
         {products.length === 0 ? (
           <p>No products available</p>
         ) : (
-          products.map((product, index) => (
-            <ProductCard key={product.id || index} product={product} />
-          ))
+          <div className="product-list">
+            {products.map((product, index) => (
+              <ProductCard key={product.id || index} product={product} />
+            ))}
+          </div>
         )}
       </div>
     </MainLayout>
