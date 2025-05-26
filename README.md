@@ -65,7 +65,7 @@ beer-challenge/
 
 ### Backend
 
-- `npm start`: Runs the backend server
+- `npm run dev`: Runs the backend server
 
 ### Frontend
 
