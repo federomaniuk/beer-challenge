@@ -56,11 +56,18 @@ app.get("/api/products/:id", (req, res) => {
   }
 
   const productWithPrices = {
-    ...product,
-    prices: product.skus.map((sku) => {
+    id: product.id,
+    brand: product.brand,
+    image: product.image,
+    style: product.style,
+    substyle: product.substyle,
+    abv: product.abv,
+    origin: product.origin,
+    information: product.information,
+    skus: product.skus.map((sku) => {
       const stockData = stockPrice[sku.code];
       return {
-        sku: sku.code,
+        code: sku.code,
         name: sku.name,
         price: stockData ? stockData.price : null,
         stock: stockData ? stockData.stock : null,
