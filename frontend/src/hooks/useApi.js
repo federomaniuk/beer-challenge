@@ -1,12 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
-const API_BASE_URL = "http://localhost:3001/api";
+const API_BASE_URL =
+  process.env.REACT_APP_API_URL || "http://localhost:3001/api";
 
 export const useApi = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchData = async (endpoint, options = {}) => {
+  const fetchData = useCallback(async (endpoint, options = {}) => {
     setLoading(true);
     setError(null);
 
@@ -31,7 +32,7 @@ export const useApi = () => {
       setLoading(false);
       throw err;
     }
-  };
+  }, []);
 
   return {
     loading,
@@ -44,20 +45,18 @@ export const useProducts = () => {
   const [products, setProducts] = useState([]);
   const { loading, error, fetchData } = useApi();
 
-  const getProducts = async () => {
-    try {
-      const data = await fetchData("/products");
-      setProducts(data);
-      return data;
-    } catch (err) {
-      console.error("Error fetching products:", err);
-      return [];
-    }
-  };
-
   useEffect(() => {
+    const getProducts = async () => {
+      try {
+        const data = await fetchData("/products");
+        setProducts(data);
+      } catch (err) {
+        console.error("Error fetching products:", err);
+      }
+    };
+
     getProducts();
-  }, []);
+  }, [fetchData]);
 
   return {
     products,
@@ -70,28 +69,38 @@ export const useProduct = (productId) => {
   const [product, setProduct] = useState(null);
   const { loading, error, fetchData } = useApi();
 
-  const getProduct = async (id) => {
+  useEffect(() => {
+    const getProduct = async () => {
+      if (!productId) return;
+
+      try {
+        const data = await fetchData(`/products/${productId}`);
+        setProduct(data);
+      } catch (err) {
+        console.error("Error fetching product:", err);
+      }
+    };
+
+    getProduct();
+  }, [productId, fetchData]);
+
+  const refetch = useCallback(async () => {
+    if (!productId) return;
     try {
-      const data = await fetchData(`/products/${id}`);
+      const data = await fetchData(`/products/${productId}`);
       setProduct(data);
       return data;
     } catch (err) {
       console.error("Error fetching product:", err);
       return null;
     }
-  };
-
-  useEffect(() => {
-    if (productId) {
-      getProduct(productId);
-    }
-  }, [productId]);
+  }, [productId, fetchData]);
 
   return {
     product,
     loading,
     error,
-    refetch: () => getProduct(productId),
+    refetch,
   };
 };
 

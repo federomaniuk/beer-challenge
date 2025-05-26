@@ -1,4 +1,3 @@
-import { useFormat } from "../../../hooks/useFormat";
 import BagIcon from "../../icons/BagIcon";
 
 const ProductDetailsFooter = ({ addToCart }) => {
