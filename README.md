@@ -1,5 +1,9 @@
 # Beer Challenge
 
+## Live Demo
+
+Check out the live demo of the application here: [Beer Challenge Demo](https://beer-challenge-iota.vercel.app/products)
+
 This project consists of a frontend application built with React and a backend server.
 
 ## Prerequisites
