@@ -6,6 +6,7 @@ import DetailsLayout from "../../layouts/DetailsLayout/DetailsLayout";
 import ProductDetailsHeader from "../../product/ProductDetails/ProductDetailsHeader";
 import ProductDetailsBody from "../../product/ProductDetails/ProductDetailsBody";
 import ProductDetailsFooter from "../../product/ProductDetails/ProductDetailsFooter";
+import { useFormat } from "../../../hooks/useFormat";
 
 const ProductDetail = () => {
   const { productSlug } = useParams();
@@ -13,6 +14,7 @@ const ProductDetail = () => {
   const productId = productSlug.split("-")[0];
   const { product, loading, error } = useProduct(productId);
   const [selectedSize, setSelectedSize] = useState(null);
+  const { formatPrice } = useFormat();
 
   useEffect(() => {
     if (product && product.skus && product.skus.length > 0 && !selectedSize) {
@@ -47,6 +49,15 @@ const ProductDetail = () => {
 
   const currentSku = getSelectedSku();
 
+  const addToCart = () => {
+    const selectedSku = getSelectedSku();
+    window.alert(
+      `Added ${product.brand} (${
+        selectedSku?.name
+      }) to cart | Total: ${formatPrice(selectedSku?.price || 0)}`
+    );
+  };
+
   return (
     <DetailsLayout>
       <div className="product-detail">
@@ -63,7 +74,7 @@ const ProductDetail = () => {
             setSelectedSize={setSelectedSize}
           />
 
-          <ProductDetailsFooter />
+          <ProductDetailsFooter addToCart={addToCart} />
         </div>
       </div>
     </DetailsLayout>
