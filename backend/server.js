@@ -9,7 +9,10 @@ const PORT = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-app.get("/api/products", (req, res) => {
+app.get("/api/products", async (req, res) => {
+  // I added this to simulate a slow network connection
+  await new Promise((resolve) => setTimeout(resolve, 1500));
+
   const productsWithPrices = products.map((product) => {
     const prices = product.skus.map((sku) => {
       const stockData = stockPrice[sku.code];
@@ -32,7 +35,7 @@ app.get("/api/products", (req, res) => {
   res.json(productsWithPrices);
 });
 
-app.get("/api/stock-price/:sku", (req, res) => {
+app.get("/api/stock-price/:sku", async (req, res) => {
   const { sku } = req.params;
   const stockData = stockPrice[sku];
 
@@ -47,7 +50,10 @@ app.get("/api/stock-price/:sku", (req, res) => {
   });
 });
 
-app.get("/api/products/:id", (req, res) => {
+app.get("/api/products/:id", async (req, res) => {
+  // I added this to simulate a slow network connection
+  await new Promise((resolve) => setTimeout(resolve, 1500));
+
   const productId = parseInt(req.params.id);
   const product = products.find((p) => p.id === productId);
 
