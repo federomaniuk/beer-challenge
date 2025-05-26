@@ -10,7 +10,7 @@ const DetailsHeader = () => {
       <button className="list-header__menu-button" onClick={() => navigate(-1)}>
         <BackIcon />
       </button>
-      <h2>Details</h2>
+      <h2>Detail</h2>
       <button className="list-header__menu-button">
         <DotsIcon />
       </button>

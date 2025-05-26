@@ -7,6 +7,7 @@ import ProductDetailsHeader from "../../product/ProductDetails/ProductDetailsHea
 import ProductDetailsBody from "../../product/ProductDetails/ProductDetailsBody";
 import ProductDetailsFooter from "../../product/ProductDetails/ProductDetailsFooter";
 import { useFormat } from "../../../hooks/useFormat";
+import DetailsSkeleton from "../../skeletons/DetailsSkeleton.jsx/DetailsSkeleton";
 
 const ProductDetail = () => {
   const { productSlug } = useParams();
@@ -57,7 +58,11 @@ const ProductDetail = () => {
   }, [product, getStockPrices]);
 
   if (loading) {
-    return <div className="product-detail__loading">Loading...</div>;
+    return (
+      <DetailsLayout>
+        <DetailsSkeleton />
+      </DetailsLayout>
+    );
   }
 
   if (error || !product) {

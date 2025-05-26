@@ -1,6 +1,7 @@
 import { useProducts } from "../../../hooks/useApi";
 import MainLayout from "../../layouts/MainLayout/MainLayout";
 import ProductCard from "../../product/ProductCard/ProductCard";
+import ProductListSkeleton from "../../skeletons/ProductListSkeleton.jsx/ProductListSkeleton";
 import UserInfo from "../../ui/UserInfo/UserInfo";
 import "./ProductList.scss";
 
@@ -10,7 +11,11 @@ const ProductList = () => {
   if (loading) {
     return (
       <MainLayout>
-        <div>Loading products...</div>
+        <div className="product-list-container">
+          <UserInfo />
+          <h2>Our Products</h2>
+          <ProductListSkeleton />
+        </div>
       </MainLayout>
     );
   }
@@ -19,7 +24,9 @@ const ProductList = () => {
     return (
       <MainLayout>
         <div>Error: {error}</div>
-        <button onClick={refetch}>Retry</button>
+        <button onClick={refetch} className="retry-button">
+          Retry
+        </button>
       </MainLayout>
     );
   }

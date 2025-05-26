@@ -1,3 +1,16 @@
+.retry-button {
+  background: rgba(255, 140, 0, 0.5);
+  border: none;
+  color: #000;
+  font-size: 16px;
+  font-weight: 600;
+  width: 100px;
+  height: 40px;
+  border-radius: 8px;
+  margin: auto;
+  cursor: pointer;
+}
+
 .product-list-container {
   display: flex;
   flex-direction: column;

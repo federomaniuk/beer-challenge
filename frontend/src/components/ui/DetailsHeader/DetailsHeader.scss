@@ -4,6 +4,14 @@
   align-items: center;
   padding: 40px 24px 24px 24px;
 
+  h2 {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: #323232;
+  }
+
   &__menu-button {
     background: none;
     border: none;
