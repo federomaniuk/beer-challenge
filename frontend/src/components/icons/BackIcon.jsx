@@ -11,8 +11,8 @@ const BackIcon = () => {
       <path
         d="M11 5.20001L4 11.7L11 18.2"
         stroke="#323232"
-        stroke-width="1.5"
-        stroke-linecap="round"
+        strokeWidth="1.5"
+        strokeLinecap="round"
       />
     </svg>
   );

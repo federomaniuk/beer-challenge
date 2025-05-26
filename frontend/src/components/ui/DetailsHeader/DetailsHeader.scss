@@ -1,3 +1,5 @@
+@import "../../../assets/style.scss";
+
 .list-header {
   display: flex;
   justify-content: space-between;
@@ -9,7 +11,7 @@
     font-size: 18px;
     line-height: 100%;
     letter-spacing: 0%;
-    color: #323232;
+    color: $std-text-color;
   }
 
   &__menu-button {
