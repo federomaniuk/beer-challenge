@@ -94,3 +94,22 @@ export const useProduct = (productId) => {
     refetch: () => getProduct(productId),
   };
 };
+
+export const useStockPrice = () => {
+  const { fetchData } = useApi();
+
+  const getStockPrices = async (skus) => {
+    try {
+      const promises = skus.map((sku) => fetchData(`/stock-price/${sku}`));
+      const results = await Promise.all(promises);
+      return results;
+    } catch (err) {
+      console.error("Error fetching stock prices:", err);
+      return [];
+    }
+  };
+
+  return {
+    getStockPrices,
+  };
+};
